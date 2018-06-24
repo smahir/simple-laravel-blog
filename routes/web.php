@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('home');
 Route::get('/about', 'PagesController@about');
 
 //Route:resource pravi sve za Post Kontroler, da ne pisem rucno :)
