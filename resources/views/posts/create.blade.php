@@ -22,6 +22,8 @@
          <button type="submit" class="btn btn-primary">Publish</button>
         </form>
         <br>
+            @include ('layouts.errors')
+        <br>
         {{-- Side rules section --}}         
          </div>
          <div class="col-md-4 blog main">
