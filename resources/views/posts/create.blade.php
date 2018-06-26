@@ -17,7 +17,7 @@
          <div class="form-group">
           <input type="text" name="title" class="form-control" placeholder="Title" required/>
           <br>
-          <textarea name="body" id="body" class="form-control" cols="30" rows="10" placeholder="Post text here..." required></textarea>
+          <textarea name="body" id="article-ckeditor" class="form-control" cols="30" rows="10" placeholder="Post text here..." required></textarea>
          </div>
          <button type="submit" class="btn btn-primary">Publish</button>
         </form>

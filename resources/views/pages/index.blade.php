@@ -18,7 +18,7 @@
               <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">Mark</a></p>
               <hr>
               
-              {{$post->body}}
+              {!! $post->body !!}
 
               </div><!-- /.blog-post -->
             @endforeach
