@@ -3,6 +3,8 @@
 @section('content')
     <h3>{{$post->title}}</h3>
     <p> Published on {{ $post->created_at->toFormattedDateString() }} </p>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+        <hr>
     <p>{!! $post->body !!}</p>
     <br>
     <h5>Comments</h5>
