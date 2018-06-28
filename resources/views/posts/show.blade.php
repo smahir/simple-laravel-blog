@@ -3,7 +3,20 @@
 @section('content')
     <h3>{{$post->title}}</h3>
     <p> Published on {{ $post->created_at->toFormattedDateString() }} </p>
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+    
+    <ul class="nav">
+        <li class="nav-item">
+        <a href="/posts/{{$post->id}}/edit" class="btn btn-primary btn-sm">Edit</a>
+        </li>
+        <li class="nav-item">
+        <form method="POST" action="/posts/{{$post->id}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        </li>
+    </ul>
+
         <hr>
     <p>{!! $post->body !!}</p>
     <br>
