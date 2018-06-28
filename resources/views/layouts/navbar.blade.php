@@ -1,7 +1,9 @@
 <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
         <div class="col-4 pt-1">
-            <a class="text-muted" href="/about">About us</a>
+            <a class="text-muted" href="/about"><i class="fas fa-question-circle"></i>
+                About us
+            </a>
         </div>
         <div class="col-4 text-center">
             <a class="blog-header-logo text-dark" href="/">Simple Blog</a>
@@ -10,10 +12,39 @@
             <a class="text-muted" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
             </a>
-        
-            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
-            <a class="btn btn-sm btn-outline-secondary" href="#">Log in</a>
-            
+            @guest
+            <a class="btn btn-sm btn-outline-secondary" href="/register"><i class="fas fa-user-plus"></i>
+                Sign up
+            </a>
+            <a class="btn btn-sm btn-outline-secondary" href="/login"><i class="fas fa-sign-in-alt"></i>
+                Log in
+            </a>
+            @else
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle"></i>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </button>
+
+                    <div class="dropdown-menu">
+                         <a href="/posts/create" class="dropdown-item">
+                            <i class="fas fa-plus"></i>
+                            Add Post
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            {{ __('Logout') }}
+                        </a>
+                       
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                    </form>
+                    </div>
+                </div>
+               
+            @endguest
         </div>
     </div>
 </header>
