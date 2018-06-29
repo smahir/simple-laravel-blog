@@ -2,8 +2,8 @@
 
 @section('content')
     <h3>{{$post->title}}</h3>
-    <p> Published on {{ $post->created_at->toFormattedDateString() }} </p>
-    
+    <p> Published on {{ $post->created_at->toFormattedDateString() }} by {{ $post->user->name }}</p>
+    @if(Auth::check())
     <ul class="nav">
         <li class="nav-item">
         <a href="/posts/{{$post->id}}/edit" class="btn btn-primary btn-sm">Edit</a>
@@ -16,7 +16,7 @@
         </form>
         </li>
     </ul>
-
+    @endif
         <hr>
     <p>{!! $post->body !!}</p>
     <br>
@@ -26,9 +26,9 @@
         <ul class="list-group">
         @foreach ($post->comments as $comment)
             <li class="list-group-item">
-                <strong>
+               <strong>{{ $comment->user->name }}</strong>
                     {{ $comment->created_at->diffForHumans() }}:
-                </strong>
+                <hr>
                 {{ $comment->body }}
             </li>
         @endforeach
@@ -37,6 +37,7 @@
 
     {{-- Add a comment --}}
     <hr>
+    @if(Auth::check())
     <div class="card">
         <div class="class-block">
            <form action="/posts/{{ $post->id }}/comments" method="POST">
@@ -51,7 +52,7 @@
                 </div>
 
            </form>
-
+    @endif
            @include('layouts.errors')
 
         </div>
