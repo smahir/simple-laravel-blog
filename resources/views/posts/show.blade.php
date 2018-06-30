@@ -3,7 +3,8 @@
 @section('content')
     <h3>{{$post->title}}</h3>
     <p> Published on {{ $post->created_at->toFormattedDateString() }} by {{ $post->user->name }}</p>
-    @if(Auth::check())
+    @auth
+    @if(Auth::id() == $post->user_id)
     <ul class="nav">
         <li class="nav-item">
         <a href="/posts/{{$post->id}}/edit" class="btn btn-primary btn-sm">Edit</a>
@@ -17,6 +18,7 @@
         </li>
     </ul>
     @endif
+    @endauth
         <hr>
     <p>{!! $post->body !!}</p>
     <br>
