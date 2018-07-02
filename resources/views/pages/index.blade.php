@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @if($featured->count() > 2)
     <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
       <div class="col-md-6 px-0">
         <h1 class="display-4 font-italic"><a href="/posts/{{ $featured[0]->id }}">{{ $featured[0]->title }}</a></h1>
@@ -38,7 +38,7 @@
         </div>
         </div>
     </div>
-
+    @endif
      <main role="main" class="container">
       <div class="row">
         <div class="col-md-8 blog-main">
