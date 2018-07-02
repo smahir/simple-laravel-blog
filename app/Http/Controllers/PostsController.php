@@ -41,13 +41,17 @@ class PostsController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            // 'post_cover' => 'image|nullable|max:2048'
         ]);
+
+        
 
         Post::create([
             'title' => request('title'),
             'body' => request('body'),
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'is_featured' => (bool) request('is_featured')
         ]);
         
         return redirect('/');
@@ -74,6 +78,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        //Check for correct user
+        if(Auth::id() != $post->user_id){
+            return redirect('/');
+        }
         return view('posts.edit')->with('post', $post);
     }
 
@@ -94,7 +102,7 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->save();
+        $post->update();
         return redirect('/');
     }
 
