@@ -42,9 +42,9 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required',
+            'title' => 'required|max:255',
             'body' => 'required',
-            'category_id' => 'required'        
+            'category_id' => 'required|integer'        
         ]);
 
         Post::create([
