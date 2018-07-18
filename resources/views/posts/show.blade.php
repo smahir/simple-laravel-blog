@@ -2,7 +2,10 @@
 
 @section('content')
     <h3>{{$post->title}}</h3>
-    <p> Published on {{ $post->created_at->toFormattedDateString() }} by {{ $post->user->name }}</p>
+    <p> Published on {{ $post->created_at->toFormattedDateString() }} by {{ $post->user->name }}
+        <br>
+        Category: {{ $post->category->name }}
+    </p>
     @auth
     @if(Auth::id() == $post->user_id)
     <ul class="nav">

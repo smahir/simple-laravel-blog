@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'body', 'user_id', 'is_featured'];
+    protected $fillable = ['title', 'body', 'user_id', 'is_featured', 'category_id'];
 
     public function comments(){
         //Comment::class = 'App\Comment'
@@ -14,5 +14,8 @@ class Post extends Model
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 }
